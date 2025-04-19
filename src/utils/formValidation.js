@@ -12,6 +12,14 @@ export const validateEmail = (email) => {
     };
   }
 
+  // Check for spaces
+  if (/\s/.test(email)) {
+    return {
+      isValid: false,
+      error: 'Error: no spaces allowed'
+    };
+  }
+
   // Strict email format validation (ASCII characters only)
   const strictEmailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   if (!strictEmailRegex.test(email)) {
@@ -71,6 +79,14 @@ export const validatePassword = (password) => {
     return {
       isValid: false,
       error: 'Password is required'
+    };
+  }
+
+  // Check for spaces
+  if (/\s/.test(password)) {
+    return {
+      isValid: false,
+      error: 'Error: no spaces allowed'
     };
   }
 
