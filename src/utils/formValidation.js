@@ -20,7 +20,15 @@ export const validateEmail = (email) => {
     };
   }
 
-  // Strict email format validation (ASCII characters only)
+  // Check for quotation marks
+  if (/['"]/.test(email)) {
+    return {
+      isValid: false,
+      error: 'Error: quotation marks are not allowed'
+    };
+  }
+
+  // Check for non-ASCII characters
   const strictEmailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   if (!strictEmailRegex.test(email)) {
     return {
@@ -87,6 +95,14 @@ export const validatePassword = (password) => {
     return {
       isValid: false,
       error: 'Error: no spaces allowed'
+    };
+  }
+
+  // Check for quotation marks
+  if (/['"]/.test(password)) {
+    return {
+      isValid: false,
+      error: 'Error: quotation marks are not allowed'
     };
   }
 
